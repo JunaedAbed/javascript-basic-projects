@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        body{
+            margin-top: 50px;
+            background-color:steelblue;
+            color: rgb(255, 255, 255);
+        }
+    </style>
+    <title>Weight Converter</title>
+</head>
+<body>
+    <div class="container ">
+        <div class="row ">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="display-4  text-center mb-4">Weight Converter</h1>
+  
+                <form>
+                    <select name="unit" id="dropdown" class="form-control form-control-sm" required>
+                        <option disabled selected value >Select Unit</option>
+                        <option value="pounds">Pounds</option>
+                        <option value="grams">Grams</option>
+                        <option value="kgrams">Kilograms</option>
+                        <option value="ounces">Ounces</option>
+                    </select>
+                    <div class="form-group">
+                        <input type="number" class="form-control form-control-lg"
+                        placeholder="Enter Number..." id="numberInput" onchange="this.value=''">
+                    </div>
+                </form>
+                <div id="output">
+                    <div id="gmout" class="card mb-2" style="background-color:silver">
+                        <div class="card-block">
+                            <h4>Grams:</h4>
+                            <div id="gramsOutput"></div>
+                        </div>
+                    </div>
+
+                    <div id="kgout" class="card mb-2" style="background-color: powderblue;">
+                        <div class="card-block">
+                            <h4>Kilograms:</h4>
+                            <div id="kgOutput"></div>
+                        </div>
+                    </div>
+
+                    <div id="ozout" class="card mb-2" style="background-color:lightpink">
+                        <div class="card-block">
+                            <h4>Ounces:</h4>
+                            <div id="ozOutput"></div>
+                        </div>
+                    </div>
+
+                    <div id="pnout" class="card mb-2" style="background-color:springgreen">
+                        <div class="card-block">
+                            <h4>Pounds:</h4>
+                            <div id="poundsOutput"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6 offset-md-3">
+                <h1 class="display-4  text-center mb-4">BMI Calculator</h1>
+                //to do 
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('output').style.visibility = 'hidden';
+
+        let e = document.getElementById('dropdown');
+
+        document.getElementById('dropdown').addEventListener('change', function(e){
+            let unit = e.target.value;
+            
+            switch (unit) {
+                case 'pounds':
+                       
+                document.getElementById('numberInput').addEventListener('input', function(e){
+                document.getElementById('output').style.visibility = 'visible';
+                let lbs = e.target.value;
+                document.getElementById('gramsOutput').innerHTML= lbs/0.0022046;
+                document.getElementById('kgOutput').innerHTML= lbs/2.2046;
+                document.getElementById('ozOutput').innerHTML= lbs*16;
+                document.getElementById('poundsOutput').innerHTML = lbs;
+                });
+
+                    break;
+                case 'grams':
+                    
+                document.getElementById('numberInput').addEventListener('input', function(e){
+                document.getElementById('output').style.visibility = 'visible';
+                let gms = e.target.value;
+                document.getElementById('gramsOutput').innerHTML= gms;
+                document.getElementById('kgOutput').innerHTML= gms/1000;
+                document.getElementById('ozOutput').innerHTML= gms/28.35;
+                document.getElementById('poundsOutput').innerHTML = gms/454;
+                });
+
+                    break;    
+                case 'kgrams':
+                
+                document.getElementById('numberInput').addEventListener('input', function(e){
+                document.getElementById('output').style.visibility = 'visible';
+                let kgms = e.target.value;
+                document.getElementById('gramsOutput').innerHTML= kgms*1000;
+                document.getElementById('kgOutput').innerHTML= kgms;
+                document.getElementById('ozOutput').innerHTML= kgms*35.274;
+                document.getElementById('poundsOutput').innerHTML = kgms*2.205;
+                });
+
+                    break;
+                case 'ounces':
+               
+                document.getElementById('numberInput').addEventListener('input', function(e){
+                document.getElementById('output').style.visibility = 'visible';
+                let ozs = e.target.value;
+                document.getElementById('gramsOutput').innerHTML= ozs*28.35;
+                document.getElementById('kgOutput').innerHTML= ozs/35.274;
+                document.getElementById('ozOutput').innerHTML= ozs;
+                document.getElementById('poundsOutput').innerHTML = ozs*16;
+                });
+
+                    break;    
+                default:
+                    alert('There was an Error!');
+                    break;
+            }
+
+        });
+    </script>
+</body>
+</html>
